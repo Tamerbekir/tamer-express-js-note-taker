@@ -4,14 +4,20 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
 //! PORT
- // Using enviornmental variable to set port number or defualt 3001
+// Using enviornmental variable to set port number or defualt 3001
 const PORT =  process.env.PORT || 3001;
 // Will listen for port in terminal and give message when server is running.
 app.listen(PORT, () => console.log(`Server started on https://localhost:${PORT}`));
 
 //! MIDDLEWARE
-// Access to all the folders/files in public directory
+// Static middleware to give access to all the folders/files in public directory
+app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //! ROUTES
@@ -28,4 +34,15 @@ app.get('/notes', (req, res) => {
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))
 });
+
+
+// //!POST
+// const notes = []
+
+// app.post('./api/notes', (req, res) => {
+//     const note = req.body;
+//     notes.push(note);
+//     res.json(note);
+// })
+
 
