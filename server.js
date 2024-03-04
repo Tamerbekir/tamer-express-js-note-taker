@@ -17,6 +17,43 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+//! POST - WRITING FILE
+// Route that adds a new note to the database
+app.post('/api/notes', (req, res) => {
+    // Grabbing db.json file content that is eventually going to get the
+    //new note posted into it
+    const exisitingNotes = require('./db/db.json');
+    // The new note is going to be grabbed from the body of the request
+    const newNote = req.body;
+    //assigning a new id to this newly created note (uniqueId variable declared above)
+    //will give every note a unique ID.
+    newNote.id = uniqueId;
+    // Pushing newNote into array (db.json file)
+    exisitingNotes.push(newNote);
+    //Save the note and save the note back into the db.json file
+    fs.writeFileSync('./db/db.json', JSON.stringify(exisitingNotes))
+        res.json(exisitingNotes)
+    })
+
+
+
+//! GET - READING FILE 
+// Api/notes will read the contents inside of the db.json file and return 
+//the saved notes/information inside.
+app.get('/api/notes', (req, res) => {
+    // Reading the files(or notes) from the json array file
+    fs.readFile('./db/db.json', (err, data) => {
+        // Variable made to make the  data easier to work with in JS.
+        let parsedData = JSON.parse(data);
+        // Response is made and note is parsed to make the data readable
+        res.json(parsedData);
+        // If there is an error, user will get a message, otherwise it
+        (err) ? res.status(500).json('Error in posting review') : console.log("Note read sucessfully")
+    });   
+});
+
+
+
 //! GET - SENDING FILE
 // Setting up the routes for the API- index, notes and wildcard.
 // notes and index.html from public folder. 
@@ -36,51 +73,7 @@ app.get('*', (req, res) => {
 });
 
 
-//! GET - READING FILE 
-// Api/notes will read the contents inside of the db.json file and return 
-//the saved notes/information inside.
-app.get('/api/notes', (req, res) => {
-    // Reading the files(or notes) from the json array file
-    fs.readFile('./db/db.json', (err, data) => {
-        // Variable made to make the  data easier to work with in JS.
-        let parsedData = JSON.parse(data);
-        // Response is made and note is parsed to make the data readable
-        res.json(parsedData);
-        // If there is an error, user will get a message, otherwise it is successful
-        (err) ? res.status(500).json('Error in posting review') : console.log("Note read successfully")
-    });   
-});
 
-
-//! POST - WRITING FILE
-// Route that adds a new note to the database
-app.post('/api/notes', (req, res) => {
-    // Grabbing db.json file content that is eventually going to get the
-    //new note posted into it
-    const exisitingNotes = require('./db/db.json');
-     // Variable for the JSON'd string for notes to make it easier to work with in JS.
-    const notesString = JSON.stringify(exisitingNotes)
-    // The new note is going to be grabbed from the body of the request
-    const newNote = req.body;
-    //assigning a new id to this newly created note (uniqueId variable declared above)
-    //will give every note a unique ID.
-    newNote.id = uniqueId;
-    // Pushing newNote into array (db.json file)
-    exisitingNotes.push(newNote);
-    //Save the note and save the note back into the db.json file
-    fs.writeFileSync('./db/db.json', notesString)
-        // Responding with the latest, updated note
-        res.json(exisitingNotes)
-
-        // Variable that posts success comment in the command line when user saves a note.
-        //otherwise user will get an error if there is an issue saving their note.
-        const response = {
-            status: "Note Written Sucessfully",
-            body: newNote
-        }
-        
-        (err) ? console.error(err) : console.log(response)
-        })
 
 
 //! PORT
