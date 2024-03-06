@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
+
 //variable that creates a unique ID when a note is saved. Gets put into json along 
 //with anew note
 const uniqueId = `id_${Date.now()}`;
@@ -52,8 +53,6 @@ app.get('/api/notes', (req, res) => {
     });   
 });
 
-
-
 //! GET - SENDING FILE
 // Setting up the routes for the API- index, notes and wildcard.
 // notes and index.html from public folder. 
@@ -73,11 +72,13 @@ app.get('*', (req, res) => {
 });
 
 
-
-
-
 //! PORT
 // Using enviornmental variable to set port number or defualt 3001
 const PORT =  process.env.PORT || 3001;
 // Will listen for port in terminal and give message when server is running.
 app.listen(PORT, () => console.log(`Server started on localhost:${PORT}`));
+
+
+
+
+
