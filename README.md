@@ -37,7 +37,9 @@ If you wish to use Nodemon (optional), follow the instructions <a href="https://
 ![ScreenShot](image.png)
 
 ## Link
-https://protected-fortress-49296-c00509acec21.herokuapp.com/
+<a href="https://protected-fortress-49296-c00509acec21.herokuapp.com/">Note Taker</a>
+
+
 
 ## Features
 <a href="https://expressjs.com/">ExpressJs</a>
