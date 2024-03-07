@@ -1,7 +1,7 @@
 # tamer-express-js-note-taker
 
 ## Description 
-This application is a note taking app that uses Express.js handles the routing through getting the apis, reads files and posts said files. When the user clicks on "Get Started" they will be taking to a notes HTML which was routed through Express.js. Here the user has the ability to write a note, will be then posted to the page as a list item. The user can add as many notes as they wish and said notes will remain on the page.
+This application is a note-taking app that uses Express.js to handle the routing by getting the APIs, reads files and posts said files. When the user clicks on "Get Started" they will be taken to a notes HTML which was routed through Express.js. Here the user has the ability to write a note, which will be then posted to the page as a list item. The user can add as many notes as they wish and said notes will remain on the page.
 
 # Table of Contents
 - [Installation](#installation)
@@ -10,9 +10,9 @@ This application is a note taking app that uses Express.js handles the routing t
 - [License](#license)
 
 ## Installation
- In order to use this application, one must first clone the repository from GitHub into their coding software. Once this is done, follow the commands:
+ To use this application, one must first clone the repository from GitHub into their coding software. Once this is done, follow the commands:
 
-To install the necessary dependencies for this application using Express. This is done by running: 
+To install the necessary dependencies for this application using Express, first start by running this in your command terminal on the server.js file:
 
 `npm install express`
 
@@ -20,13 +20,13 @@ Once this is done, install npm:
 
 `npm install`
 
-This will install all the dependencies listed in your project's package.json file.
+This will install all the dependencies listed in for project's package.json file.
 
-Once the necessary packages are install, run:
+Once the necessary packages are installed, run:
 
 `node server.js` 
 
-This will start the application. If you have Nodemon installed, run:
+This will start the application. If you have nodemon installed, run:
 
 `nodemon server.js`
 
